@@ -9,7 +9,13 @@ rust-version.workspace = true
 version.workspace = true
 
 [features]
+default = ["dlopen"]
 serde = ["dep:serde", "bitflags/serde", "smol_str/serde", "dpi/serde"]
+
+# Default: Use dlopen() at runtime to load all libraries.
+dlopen = ["x11rb/dl-libxcb", "xkbcommon-dl/dlopen-xkbcommon", "dep:x11-dl"]
+# Alternative: Link at compile time to all libraries.
+no-dlopen = ["dep:x11"]
 
 [dependencies]
 bitflags.workspace = true
@@ -28,11 +34,17 @@ libc.workspace = true
 percent-encoding.workspace = true
 rustix = { workspace = true, features = ["std", "system", "thread", "process"] }
 winit-common = { workspace = true, features = ["xkb", "x11"] }
-x11-dl.workspace = true
+x11 = { workspace = true, features = [
+    # Enable linking against the following X11 libraries at compile time:
+    "dpms",
+    "xlib",
+    "xlib_xcb",
+    "xinput",
+], optional = true }
+x11-dl = { workspace = true, optional = true }
 x11rb = { workspace = true, features = [
     "allow-unsafe-code",
     "cursor",
-    "dl-libxcb",
     "randr",
     "resource_manager",
     "sync",

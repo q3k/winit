@@ -1,7 +1,7 @@
 use std::ffi::c_int;
 use std::sync::Arc;
 
-use x11_dl::xlib::{self, XEvent, XGenericEventCookie};
+use crate::x11::xlib::{self, XEvent, XGenericEventCookie};
 
 use crate::xdisplay::XConnection;
 

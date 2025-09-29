@@ -3,7 +3,7 @@ use std::ffi::CStr;
 use std::sync::Arc;
 use std::{fmt, mem, ptr};
 
-use x11_dl::xlib::{XIMCallback, XIMPreeditCaretCallbackStruct, XIMPreeditDrawCallbackStruct};
+use crate::x11::xlib::{XIMCallback, XIMPreeditCaretCallbackStruct, XIMPreeditDrawCallbackStruct};
 
 use super::input_method::{InputMethod, Style, XIMStyle};
 use super::{ffi, util, ImeEvent, ImeEventSender};

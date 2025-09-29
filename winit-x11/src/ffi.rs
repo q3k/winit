@@ -1,4 +1,4 @@
-pub use x11_dl::error::OpenError;
-pub use x11_dl::xinput2::*;
-pub use x11_dl::xlib::*;
-pub use x11_dl::xlib_xcb::*;
+pub use crate::x11::error::OpenError;
+pub use crate::x11::xinput2::*;
+pub use crate::x11::xlib::*;
+pub use crate::x11::xlib_xcb::*;

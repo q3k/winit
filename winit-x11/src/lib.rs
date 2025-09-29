@@ -1,4 +1,7 @@
 //! # X11
+//!
+//! By default, Winit loads system libraries using `dlopen`. This can be disabled by disabling the
+//! `"x11-dlopen"` cargo feature and then setting the `"x11-no-dlopen"` cargo feature.
 
 use dpi::Size;
 #[cfg(feature = "serde")]
@@ -14,6 +17,17 @@ macro_rules! os_error {
         winit_core::error::OsError::new(line!(), file!(), $error)
     }};
 }
+
+#[cfg(all(feature = "dlopen", feature="no-dlopen"))]
+compile_error!("Feature dlopen and no-dlopen cannot be enabled simultaneously.");
+
+#[cfg(not(any(feature = "dlopen", feature="no-dlopen")))]
+compile_error!("Exactly one feature must be set: dlopen or no-dlopen.");
+
+#[cfg(feature = "dlopen")]
+pub(crate) use x11_dl as x11;
+#[cfg(feature = "no-dlopen")]
+pub(crate) use x11;
 
 mod activation;
 mod atoms;

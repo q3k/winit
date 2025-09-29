@@ -39,7 +39,7 @@ targets = [
 
 # Features are documented in either `lib.rs` or under `winit::platform`.
 [features]
-default = ["x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
+default = ["x11", "x11-dlopen", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
 
 android-game-activity = ["winit-android/game-activity"]
 android-native-activity = ["winit-android/native-activity"]
@@ -59,6 +59,8 @@ wayland-csd-adwaita-crossfont = ["winit-wayland/csd-adwaita-crossfont"]
 wayland-csd-adwaita-notitle = ["winit-wayland/csd-adwaita-notitle"]
 wayland-dlopen = ["winit-wayland/dlopen"]
 x11 = ["dep:winit-x11"]
+x11-dlopen = ["winit-x11/dlopen"]
+x11-no-dlopen = ["winit-x11/no-dlopen"]
 
 [build-dependencies]
 cfg_aliases.workspace = true
