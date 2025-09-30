@@ -3,8 +3,7 @@ use std::os::raw::c_short;
 use std::sync::Arc;
 use std::{mem, ptr};
 
-use x11_dl::xlib::{XIMCallback, XIMPreeditCaretCallbackStruct, XIMPreeditDrawCallbackStruct};
-
+use crate::platform_impl::platform::x11::x11::xlib::{XIMCallback, XIMPreeditCaretCallbackStruct, XIMPreeditDrawCallbackStruct};
 use crate::platform_impl::platform::x11::ime::input_method::{Style, XIMStyle};
 use crate::platform_impl::platform::x11::ime::{ImeEvent, ImeEventSender};
 

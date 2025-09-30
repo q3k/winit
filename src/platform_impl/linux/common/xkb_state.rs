@@ -15,7 +15,7 @@ use xkbcommon_dl::{
 #[cfg(feature = "wayland")]
 use {memmap2::MmapOptions, std::os::unix::io::OwnedFd};
 #[cfg(feature = "x11")]
-use {x11_dl::xlib_xcb::xcb_connection_t, xkbcommon_dl::x11::xkbcommon_x11_handle};
+use {crate::platform_impl::platform::x11::x11::xlib_xcb::xcb_connection_t, xkbcommon_dl::x11::xkbcommon_x11_handle};
 
 use crate::event::KeyEvent;
 use crate::platform_impl::common::keymap;

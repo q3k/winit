@@ -11,6 +11,7 @@ repository = "https://github.com/rust-windowing/winit"
 documentation = "https://docs.rs/winit"
 categories = ["gui"]
 rust-version = "1.65.0"
+resolver = "2"
 
 [package.metadata.docs.rs]
 features = [
@@ -43,7 +44,10 @@ rustdoc-args = ["--cfg", "docsrs"]
 
 [features]
 default = ["rwh_06", "x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
-x11 = ["x11-dl", "bytemuck", "percent-encoding", "xkbcommon-dl/x11", "x11rb"]
+x11 = ["bytemuck", "percent-encoding", "xkbcommon-dl/x11", "x11rb"]
+x11-dlopen = ["dep:x11-dl", "xkbcommon-dl/dlopen-xkbcommon", "x11rb/dl-libxcb"]
+x11-no-dlopen = ["dep:x11"]
+x11-static = ["x11?/static"]
 wayland = ["wayland-client", "wayland-backend", "wayland-protocols", "wayland-protocols-plasma", "sctk", "ahash", "memmap2"]
 wayland-dlopen = ["wayland-backend/dlopen"]
 wayland-csd-adwaita = ["sctk-adwaita", "sctk-adwaita/ab_glyph"]
@@ -165,9 +169,19 @@ wayland-backend = { version = "0.3.0", default_features = false, features = ["cl
 wayland-client = { version = "0.31.1", optional = true }
 wayland-protocols = { version = "0.31.0", features = [ "staging"], optional = true }
 wayland-protocols-plasma = { version = "0.2.0", features = [ "client" ], optional = true }
+x11 = { git = "https://github.com/q3k/x11-rs", rev = "05d5db00188e3bcab9163fae1c6ca130dd03e373", optional = true, features = [
+    # Enable linking against the following X11 libraries at compile time:
+    "dpms",
+    "xlib",
+    "xlib_xcb",
+    "xinput",
+    "xcursor",
+    "xrender",
+    "xfixes",
+]}
 x11-dl = { version = "2.18.5", optional = true }
-x11rb = { version = "0.12.0", default-features = false, features = ["allow-unsafe-code", "dl-libxcb", "randr", "resource_manager", "xinput", "xkb"], optional = true }
-xkbcommon-dl = "0.4.0"
+x11rb = { version = "0.12.0", default-features = false, features = ["allow-unsafe-code", "randr", "resource_manager", "xinput", "xkb"], optional = true }
+xkbcommon-dl = { git = "https://github.com/q3k/xkbcommon-dl", rev = "a0d914ac5c49c3b39d6e19a69b1a48b862a8a348", default-features = false }
 
 [target.'cfg(target_os = "redox")'.dependencies]
 orbclient = { version = "0.3.42", default-features = false }
