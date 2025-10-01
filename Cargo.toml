@@ -45,9 +45,8 @@ rustdoc-args = ["--cfg", "docsrs"]
 [features]
 default = ["rwh_06", "x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
 x11 = ["bytemuck", "percent-encoding", "xkbcommon-dl/x11", "x11rb"]
-x11-dlopen = ["dep:x11-dl", "xkbcommon-dl/dlopen-xkbcommon", "x11rb/dl-libxcb"]
-x11-no-dlopen = ["dep:x11"]
-x11-static = ["x11?/static"]
+x11-dlopen = ["dep:x11-dl", "xkbcommon-dl/dlopen-xkbcommon", "x11rb/dl-libxcb", "x11/skip-buildrs"]
+x11-static = ["x11/static"]
 wayland = ["wayland-client", "wayland-backend", "wayland-protocols", "wayland-protocols-plasma", "sctk", "ahash", "memmap2"]
 wayland-dlopen = ["wayland-backend/dlopen"]
 wayland-csd-adwaita = ["sctk-adwaita", "sctk-adwaita/ab_glyph"]
@@ -169,7 +168,7 @@ wayland-backend = { version = "0.3.0", default_features = false, features = ["cl
 wayland-client = { version = "0.31.1", optional = true }
 wayland-protocols = { version = "0.31.0", features = [ "staging"], optional = true }
 wayland-protocols-plasma = { version = "0.2.0", features = [ "client" ], optional = true }
-x11 = { git = "https://github.com/q3k/x11-rs", rev = "96b478464b9656d07c9a2416bebbf8f883cad031", optional = true, features = [
+x11 = { git = "https://github.com/q3k/x11-rs", rev = "5dec2c74f5c688ddfda6ab95129f2a686e0b6542", features = [
     # Enable linking against the following X11 libraries at compile time:
     "dpms",
     "xlib",

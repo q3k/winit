@@ -11,12 +11,7 @@ pub mod util;
 mod window;
 mod xdisplay;
 
-#[cfg(all(feature = "x11-dlopen", feature="x11-no-dlopen"))]
-compile_error!("Feature x11-dlopen and x11-no-dlopen cannot be enabled simultaneously.");
-#[cfg(not(any(feature = "x11-dlopen", feature="x11-no-dlopen")))]
-compile_error!("Exactly one feature must be set: x11-dlopen or x11-no-dlopen.");
-
-#[cfg(feature = "x11-no-dlopen")]
+#[cfg(not(feature = "x11-dlopen"))]
 pub(crate) use x11 as x11;
 #[cfg(feature = "x11-dlopen")]
 pub(crate) use x11_dl as x11;
