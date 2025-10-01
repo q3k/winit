@@ -1,6 +1,6 @@
 [package]
 name = "winit"
-version = "0.29.4"
+version = "0.29.999"
 authors = ["The winit contributors", "Pierre Krieger <pierre.krieger1708@gmail.com>"]
 description = "Cross-platform window creation library."
 edition = "2021"
@@ -169,7 +169,7 @@ wayland-backend = { version = "0.3.0", default_features = false, features = ["cl
 wayland-client = { version = "0.31.1", optional = true }
 wayland-protocols = { version = "0.31.0", features = [ "staging"], optional = true }
 wayland-protocols-plasma = { version = "0.2.0", features = [ "client" ], optional = true }
-x11 = { git = "https://github.com/q3k/x11-rs", rev = "05d5db00188e3bcab9163fae1c6ca130dd03e373", optional = true, features = [
+x11 = { git = "https://github.com/q3k/x11-rs", rev = "96b478464b9656d07c9a2416bebbf8f883cad031", optional = true, features = [
     # Enable linking against the following X11 libraries at compile time:
     "dpms",
     "xlib",
@@ -181,7 +181,7 @@ x11 = { git = "https://github.com/q3k/x11-rs", rev = "05d5db00188e3bcab9163fae1c
 ]}
 x11-dl = { version = "2.18.5", optional = true }
 x11rb = { version = "0.12.0", default-features = false, features = ["allow-unsafe-code", "randr", "resource_manager", "xinput", "xkb"], optional = true }
-xkbcommon-dl = { git = "https://github.com/q3k/xkbcommon-dl", rev = "a0d914ac5c49c3b39d6e19a69b1a48b862a8a348", default-features = false }
+xkbcommon-dl = { git = "https://github.com/q3k/xkbcommon-dl", rev = "6bc978ba1977a039523d67a2a05380ed4e32941c", default-features = false }
 
 [target.'cfg(target_os = "redox")'.dependencies]
 orbclient = { version = "0.3.42", default-features = false }
